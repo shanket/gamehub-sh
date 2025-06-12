@@ -2,9 +2,11 @@ import { Fragment } from "react";
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
+import GameCardSkeleton from "./GameCardSkeleton";
 
 const GameGrid = () => {
-  const { games, error } = useGames();
+  const { games, error, isLoading } = useGames();
+  const skeletons = [1, 2, 3, 4, 5, 6];
 
   return (
     <Fragment>
@@ -15,6 +17,8 @@ const GameGrid = () => {
         spaceX={10}
         spaceY={10}
       >
+        {isLoading &&
+          skeletons.map((skeleton) => <GameCardSkeleton key={skeleton} />)}
         {games.map((game) => (
           //   <li key={game.id}>{game.name}</li>
           <GameCard key={game.id} game={game} />
