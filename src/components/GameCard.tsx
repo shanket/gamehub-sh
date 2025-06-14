@@ -3,6 +3,7 @@ import { Card, Heading, Image, HStack } from "@chakra-ui/react";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
 import getCroppedImageUrl from "../services/image-url";
+import Emoji from "./Emoji";
 
 interface GameProps {
   game: Game;
@@ -19,7 +20,9 @@ const GameCard = ({ game }: GameProps) => {
           ></PlatformIconList>
           <CriticScore score={game.metacritic}></CriticScore>
         </HStack>
-        <Heading fontSize="2xl">{game.name}</Heading>
+        <Heading fontSize="2xl">
+          {game.name} <Emoji rating={game.rating_top}></Emoji>
+        </Heading>
       </Card.Body>
     </Card.Root>
   );
