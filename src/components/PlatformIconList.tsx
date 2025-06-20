@@ -15,7 +15,7 @@ import { HStack, Icon } from "@chakra-ui/react";
 
 import { Fragment } from "react/jsx-runtime";
 
-import type { Platform } from "../hooks/useGames";
+import type { Platform } from "../hooks/usePlatform";
 import type { IconType } from "react-icons";
 
 interface PlatformIconListProps {
