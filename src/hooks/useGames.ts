@@ -49,7 +49,7 @@ const useGames = (gameQuery: GameQuery) => useInfiniteQuery<FetchResponse<Game>,
       // Assuming the API returns a 'next' property (URL or boolean)
       return (lastPage.next ? allPages.length + 1 : undefined);
     }, 
-    //staleTime: 24 * 60 * 60 * 1000, // 24 hours  
+    staleTime: 24 * 60 * 60 * 1000, // 24 hours  
     initialPageParam: 1
   }
 )
