@@ -1,11 +1,21 @@
-import axios from "axios";
+import axios, { type AxiosRequestConfig } from "axios";
 
 export interface FetchResponse<T> {
   count: number;
   results: T[];
 }
 
-export default axios.create({
+// export default axios.create({
+//     baseURL: "https://api.rawg.io/api",    
+//     headers: {
+//         "Content-Type": "application/json"        
+//     },
+//     params: {
+//         key: "833973971e334275a9c37de7ff42c20d"
+//     }
+// });
+
+const axiosInstance =  axios.create({
     baseURL: "https://api.rawg.io/api",    
     headers: {
         "Content-Type": "application/json"        
@@ -15,31 +25,16 @@ export default axios.create({
     }
 });
 
-// const axiosInstance =  axios.create({
-//     baseURL: "https://api.rawg.io/api",
-//     // baseURL:"https://thingproxy.freeboard.io/fetch/https://api.rawg.io/api/",
-//     headers: {
-//         "Content-Type": "application/json"        
-//     },
-//     params: {
-//         key: "833973971e334275a9c37de7ff42c20d"
-//     }
-// });
+class APIClient<T> {
+    endpoint: string;
 
-// class ApiClient<T> {
-//     endpoint: string;
+    constructor(endpoint: string) {
+        this.endpoint = endpoint;
+    }
 
-//     constructor(endpoint: string) {
-//         this.endpoint = endpoint;
-//     }
+    getAll = (config:AxiosRequestConfig) => {
+        return axiosInstance.get<FetchResponse<T>>(this.endpoint,config).then(response => response.data);        
+    }   
+}
 
-//     getAll = (params: object = {}) => {
-//         return axiosInstance.get<T[]>(this.endpoint, { params }).then(response => response.data);        
-//     }
-
-//     post = (data:T) => {
-//         return axiosInstance.post<T>(this.endpoint, data).then(response => response.data);
-//     }
-// }
-
-// export default ApiClient;
+export default APIClient;
