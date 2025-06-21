@@ -9,6 +9,7 @@ import platforms from "../data/platforms"
 // import type { FetchResponse } from "../services/api-client";
 
 import APIClient from "../services/api-client";
+import ms from "ms";
 
 const apiClient = new APIClient<Platform>("/platforms/lists/parents");
 
@@ -29,7 +30,7 @@ export interface Platform{
 const usePlatforms =()=> useQuery({
   queryKey: ["platforms"],
   queryFn: apiClient.getAll,
-  staleTime: 1000 * 60 * 60 * 24, //  // 24 hours
+  staleTime: ms("24h"), // 24 hours
   initialData: platforms
 })
 
