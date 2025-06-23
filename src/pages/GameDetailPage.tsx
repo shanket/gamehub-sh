@@ -1,7 +1,22 @@
-import React from "react";
+import { useParams } from "react-router-dom";
+import useGame from "../hooks/useGame";
+import { Heading, Spinner, Text } from "@chakra-ui/react";
+import { Fragment } from "react/jsx-runtime";
 
 const GameDetailPage = () => {
-  return <div>GameDetailPage</div>;
+  const { slug } = useParams();
+  const { data: game, isLoading, error } = useGame(slug!);
+
+  if (isLoading) return <Spinner />;
+
+  if (error || !game) throw error;
+
+  return (
+    <Fragment>
+      <Heading>{game.name}</Heading>
+      <Text>{game.description_raw}</Text>
+    </Fragment>
+  );
 };
 
 export default GameDetailPage;
