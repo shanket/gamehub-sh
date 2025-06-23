@@ -6,8 +6,10 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "./index.css";
 
 // import "./index.css";
-import App from "./App.tsx";
+// import App from "./App.tsx";
 import { Provider } from "./components/ui/provider.tsx";
+import router from "./routes.tsx";
+import { RouterProvider } from "react-router-dom";
 
 // const queryClient = new QueryClient({
 //   defaultOptions: {
@@ -27,7 +29,8 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider defaultTheme="dark">
       <QueryClientProvider client={queryClient}>
-        <App />
+        {/* <App /> */}
+        <RouterProvider router={router} />
         <ReactQueryDevtools />
       </QueryClientProvider>
     </Provider>
