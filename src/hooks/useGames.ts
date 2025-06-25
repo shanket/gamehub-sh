@@ -8,7 +8,7 @@ import APIClient from "../services/api-client";
 import ms from "ms";
 import useGameQueryStore from "../store";
 // Update the import path below if 'Game' is defined elsewhere, e.g. '../entities/Game'
-import type { Game } from "../entities/Game";
+import type Game from "../entities/Game";
 
 const apiClient = new APIClient<Game>("/games");
 
